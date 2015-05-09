@@ -213,18 +213,18 @@ class ConferenceApi(remote.Service):
         return self._createConferenceObject(request)
 
 
-@endpoints.method(ConferenceQueryForms, ConferenceForms,
-            path='queryConferences',
-            http_method='POST',
-            name='queryConferences')
-def queryConferences(self, request):
-    """Query for conferences."""
-    conferences = Conference.query()
-    # return individual ConferenceForm object per Conference
-    return ConferenceForms(
-        items=[self._copyConferenceToForm(conf, "") \
-        for conf in conferences]
-    )
+    @endpoints.method(ConferenceQueryForms, ConferenceForms,
+                path='queryConferences',
+                http_method='POST',
+                name='queryConferences')
+    def queryConferences(self, request):
+        """Query for conferences."""
+        conferences = Conference.query()
+        # return individual ConferenceForm object per Conference
+        return ConferenceForms(
+            items=[self._copyConferenceToForm(conf, "") \
+            for conf in conferences]
+        )
 
 
 # registers API
